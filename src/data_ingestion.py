@@ -19,6 +19,6 @@ def fetch_data():
         logging.error("Error fetching the data: %s", e)
         return None
 
-if __name__ == '__main__':
+if __name__ == '__main__': # It ensures code runs only when the script is executed directly, and not when it is imported as a module in another script.
     data = fetch_data()
     print(data)

@@ -12,17 +12,18 @@ def insert_into_postgres(data):
             user="myuser",
             password="mypassword"
         )
-        cursor = conn.cursor()
+        cursor = conn.cursor() #Allows Python code to execute PostgreSQL command in a database session
 
         #create table 
-        cursor.execute(
+        # .execute() sends SQL commands to the database using the cursor object.
+        cursor.execute( 
             """
         CREATE TABLE IF NOT EXIST books (
             id SERIAL PRIMARY KEY,
             title VARCHAR(255)
         );
         """)
-        conn.commit()
+        conn.commit() # ensures that the changes (like creating a table or inserting data) are permanently saved in the database.
 
         for item in data:
             title = item.get("title")
@@ -30,7 +31,7 @@ def insert_into_postgres(data):
         conn.commit()
 
         cursor.close()
-        conn.close()
+        conn.close() 
         logging.info("Data inserted into PostgreSQL successfully.")
     except Exception as e:
         logging.error("Error inserting into PostgreSQL : %s", e)
