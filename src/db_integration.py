@@ -6,7 +6,7 @@ def insert_into_postgres(data):
     """Insert data into PostgreSQL."""
     try:
         conn = psycopg2.connect(
-            host ="localhost",
+            host ="postgres",
             port=5432,
             database="mydb",
             user="myuser",
@@ -39,7 +39,7 @@ def insert_into_postgres(data):
 def insert_into_mongodb(data):
     """Insert data into MongoDB."""
     try:
-        client = MongoClient("mongodb://localhost:27017/")
+        client = MongoClient("mongodb://mongodb:27017/")
         db = client["mydb"]
         collection = db["books"]
         #insert many documents
